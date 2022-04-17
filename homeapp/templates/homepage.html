@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% load static %}
+
+<style>
+  .post_cards {
+    margin-top: 100px;
+    margin-left: 20px;
+  }
+
+  .card {
+    margin-left: 10px;
+    
+  }
+
+  .card-img {
+    height: 200px;
+    margin-top: 10px;
+
+  }
+  .bgimg4{
+    background-image:url("static/images1/beautiful house/house21.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+   background-position: top 30px;
+ 
+}
+  
+</style>
+
+<div>
+  
+  {% if user.is_owner %}
+
+  <link rel="stylesheet" href="{% static  'ownermodule.css' %}">
+  <link rel="stylesheet" href="{% static 'ownerdash.css' %}">
+  <style>
+    .sidebar {
+      height: 100%;
+      width: 25%;
+      background-color:#0009;
+      padding-top: 40px;
+      margin-top: 70px;
+    }
+
+    /* Style sidebar links */
+    .sidebar a {
+      padding: 6px 8px 20px 30px;
+      text-decoration: none;
+
+      font-size: 20px;
+      font-weight: 600;
+      color: rgb(252, 252, 252);
+      display: block;
+
+    }
+
+    /* Style links on mouse-over */
+    .sidebar a:hover {
+      color: gray;
+    }
+
+    /* Style the main content */
+
+    /* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+    @media screen and (max-height: 450px) {
+      .sidebar {
+        padding-top: 15px;
+      }
+
+      .sidebar a {
+        font-size: 18px;
+      }
+    }
+   
+    
+  </style>
+
+
+  <!-- The sidebar -->
+  
+  <div class="row">
+    <div class="col-3">
+      <div class="sidebar">
+        <a href="homepage"><i class="fa fa-fw fa-home"></i> Dashboard</a>
+
+        <a href="rooms"><i class="fa fa-fw fa-wrench"></i> Add Rooms</a>
+        <a href="bookingrequests"><i class="fa fa-fw fa-user"></i> Booking Request</a>
+        <a href="payment_list"><i class="fa fa-fw fa-user"></i> Payment List</a>
+        <a href="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+      </div>
+    </div>
+ 
+    <!--sidebar section-->
+
+    <div class="col-9">
+      {% block content1 %}
+      <style>
+        .col-md-6 {
+          font-size: 20px;
+          font-family: serif;
+          font-weight: 600;
+          width: 300px;
+        }
+
+        .row-s {
+          margin-left: 150px;
+        }
+
+        .welcome {
+          margin-top: 30px;
+          color:antiquewhite
+        }
+        .bgimg10{
+          background-image:url("static/images1/beautiful house/house22.jpg");
+          background-repeat:no-repeat;
+          background-size: cover;
+         background-position: top 30px;
+       
+      }
+      </style>
+      <body class="bgimg10">
+      <div id="Dashboard">
+        <div class="container p-5">
+          <div class="section-title text-center">
+            <h2 class="welcome">Welcome {{user.first_name}} !!</h2>
+            {% for msg in messages %}
+            <p style="color: green;" > {{msg}} </p>
+          {% endfor %}
+            <div class="col-md-12 grid-margin transparent">
+              <div class="row row-s">
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                  <div class="card card-tale">
+                    <div class="card-body1">
+                      <p class="mb-4">Total Room</p>
+                      <p class="fs-30 mb-2"> 9 </p>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 stretch-card transparent">
+                  <div class="card card-dark-blue">
+                    <div class="card-body2">
+                      <p class="mb-4">Total City</p>
+                      <p class="fs-30 mb-2">10</p>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-s">
+                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                  <div class="card card-light-blue">
+                    <div class="card-body3">
+                      <p class="mb-4">Total Registered owner</p>
+                      <p class="fs-30 mb-2">34040</p>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                  <div class="card card-light-danger">
+                    <div class="card-body4">
+                      <p class="mb-4">Total pg</p>
+                      <p class="fs-30 mb-2">47033</p>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </body>
+      {% endblock content1 %}
+    </div>
+  </div>
+  {% else %}
+  <style>
+    .my-color1 {
+      background: yellowgreen;
+    }
+
+    .btn1 {
+      color: green;
+      background: white;
+      font-weight: 700;
+    }
+
+    .bar {
+      font-family: serif;
+    }
+  
+   
+  </style>
+  <body class="bgimg4">
+  <div class="post_cards row">
+    {% for msg in messages %}
+  <p style="color: green;" > {{msg}} </p>
+{% endfor %}
+    {% for post in object_list %}
+    
+    <div class="card" style="width: 18rem;">
+
+      <img src=" {{post.home_image.url}} " class="card-img-top card-img" alt="...">
+      <div class="card-body">
+        <h6 class="card-title"> <small> {{post.post_date}}</small></h6>
+        <h5 class="card-title">{{post.home_name}}</h5>
+        <h5 class="card-title">{{post.city}}</h5>
+        <p class="card-text"> {{post.home_description}} </p>
+        <div class="row">
+          <a href="{% url 'details' post.pk %} " class="btn btn-primary col">More Details</a>
+          </div>
+      </div>
+    </div>
+
+    {% endfor %}
+
+  </div>
+  {% endif %}
+</div>
+</body>
+{% endblock content %}

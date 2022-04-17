@@ -1,0 +1,35 @@
+
+.sidebar {
+    height: 100%;
+    width: 190px;
+    z-index: 1;
+    top: 70;
+    left: 0;
+    background-color:green;
+    
+    overflow-x: hidden;
+    padding-top: 40px;
+  }
+  
+  /* Style sidebar links */
+  .sidebar a {
+    padding: 6px 8px 20px 30px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color:white;
+    display: block;
+  
+  }
+  
+  /* Style links on mouse-over */
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  
+  
+  /* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }

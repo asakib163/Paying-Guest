@@ -1,0 +1,290 @@
+{% extends "homepage.html" %}
+
+{% block content1 %}
+{% load static %}
+<style>
+  .title {
+    color: maroon;
+    font-family: serif;
+    font-size: 35px;
+    font-weight: 500;
+  }
+  .form{
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: mediumaquamarine;
+    font-family: serif;
+    font-size: 20px;
+    font-weight: 300;
+    
+  }
+  .addrooms{
+    margin-top: 60px;
+  }
+
+ </style>
+<body>
+<br>
+
+<div class="position-relative addrooms">
+  <div class="position-absolute top-0 start-50 translate-middle-x">
+    <marquee behavior="scroll" direction="right">
+      <h3 class="title">Add Your Rooms</h3>
+    </marquee>
+  </div>
+</div>
+<br><br><br>
+
+<form class="row g-3 form" method="POST" action="rooms" enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  <div class="col-md-4">
+    <label for="inputEmail4" class="form-label">Home Name</label>
+    <input type="text" class="form-control" id="inputEmail4" name="home_name">
+  </div>
+  
+
+  <div class="col-9">
+    <div class="input-group mb-3">
+      <label for="formFileLg" class="label">Home Image</label>&emsp;&emsp;&emsp;&emsp;
+      <input type="file" class="form-control" id="inputGroupFile02" name= "home_image">
+    </div>
+    <div class="input-group mb-3">
+      <label for="formFileLg" class="label">Rooms 1st Image</label>&emsp;&emsp;&nbsp;
+      <input type="file" class="form-control" id="inputGroupFile02" name= "room_image1">
+    </div>
+    <div class="input-group mb-3">
+      <label for="formFileLg" class="label">Rooms 2nd Image</label>&emsp;&ensp;&nbsp;
+      <input type="file" class="form-control" id="inputGroupFile02" name= "room_image2">
+    </div>
+    <div class="input-group mb-3">
+      <label for="formFileLg" class="label">Rooms 3rd Image</label>&emsp;&emsp;
+      <input type="file" class="form-control" id="inputGroupFile02" name= "room_image3">
+    </div>
+    <label class="label">PG Type</label>
+    <div class="input-group">
+      <div class="rs-select2 js-select-simple select--no-search">
+          <select class="form-select form-select-lg mb-3" name="PG_type" required>
+            <option disabled="disabled" selected="selected">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Both">Both</option>
+          </select>
+          <div class="select-dropdown"></div>
+      </div>
+  </div>
+  </div>
+  <div class="col-9">
+    <label for="inputAddress" class="form-label">Address</label>
+    <input type="text" class="form-control" id="inputAddress" name="address" placeholder="1234 Main St">
+  </div>
+  <div class="col-9">
+    <label for="inputAddress2" class="form-label">Price Per Month</label>
+    <input type="text" class="form-control" id="inputprice" name="price_per_month" placeholder="3k/- tk">
+  </div>
+  <div class="col-md-4">
+    <label for="inputCity" class="form-label">City</label>
+    <input type="text" class="form-control" id="inputCity" name="city">
+  </div>
+  <div class="col-md-3">
+    <label for="inputState" class="form-label">Divisions</label>
+    <select id="inputState" name="divisions" class="form-select">
+      <option value="CTG" selected>Chattogram</option>
+      <option value="DHA">Dhaka</option>
+      <option value="RAN">Rangpur</option>
+      <option value="RAJ">Rajshahi</option>
+      <option value="KHU">Khulna</option>
+      <option value="BAR">Barishal</option>
+      <option value="SYL">Sylhet</option>
+      <option value="MYM">Mymenshing</option>
+    </select>
+  </div>
+  <!-- Facilities -->
+  <br>
+  <hr>
+  <div class="position-relative">
+    <div class="position-absolute top-0 start-50 translate-middle-x">
+      <marquee direction="right">
+        <h3 class="title">Facilities</h3>
+      </marquee>
+    </div>
+  </div>
+  <br><br>
+  <hr>
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">Furniture</legend>
+    <div class="col-sm-3">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="furniture" id="gridRadios1" value="Yes" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="furniture" id="gridRadios2" value="No">
+        <label class="form-check-label" for="gridRadios2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">AC</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="AC" id="gridRadios1" value="Yes" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="AC" id="gridRadios2" value="No">
+        <label class="form-check-label" for="gridRadios2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">Fan</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="fan" id="gridRadios1" value="Yes" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="fan" id="gridRadios2" value="No">
+        <label class="form-check-label" for="gridRadios2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">Bed</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="bed" id="gridRadios1" value="Yes" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="bed" id="gridRadios2" value="No">
+        <label class="form-check-label" for="gridRadios2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">Light</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="light" id="gridRadios1" value="Yes" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="light" id="gridRadios2" value="No">
+        <label class="form-check-label" for="gridRadios2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">Wifi</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="wifi" id="gridRadios1" value="Yes" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="wifi" id="gridRadios2" value="No">
+        <label class="form-check-label" for="gridRadios2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">Parking</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="parking" id="gridRadios1" value="Yes" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="parking" id="gridRadios2" value="No">
+        <label class="form-check-label" for="gridRadios2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">Breakfast</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="breakfast" id="gridRadios1" value="Yes" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="breakfast" id="gridRadios2" value="No">
+        <label class="form-check-label" for="gridRadios2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">Lunch</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="lunch" id="gridRadios1" value="Yes" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="lunch" id="gridRadios2" value="No">
+        <label class="form-check-label" for="gridRadios2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="row mb-3">
+    <legend class="col-form-label col-sm-2 pt-0">Dinner</legend>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="dinner" id="gridRadios1" value="Yes" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Yes
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="dinner" id="gridRadios2" value="No">
+        <label class="form-check-label" for="gridRadios2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+  <!-- Facilities -->
+  <div class="col-9">
+    <button type="submit" class="btn btn-primary">Upload</button>
+  </div>
+</form>
+</body>
+{% endblock content1 %}

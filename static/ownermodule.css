@@ -1,0 +1,89 @@
+.sidebar {
+    height: 100%;
+    width: 190px;
+    position: fixed;
+    z-index: 1;
+    top: 70;
+    left: 0;
+    background-color: teal;
+
+    overflow-x: hidden;
+    padding-top: 40px;
+  }
+
+  /* Style sidebar links */
+  .sidebar a {
+    padding: 6px 8px 20px 30px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    display: block;
+
+  }
+
+  /* Style links on mouse-over */
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+
+  /* Style the main content */
+  .main {
+    margin-left: 160px;
+    /* Same as the width of the sidenav */
+    padding: 10px 10px;
+  }
+
+  /* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+  @media screen and (max-height: 450px) {
+    .sidebar {
+      padding-top: 15px;
+    }
+
+    .sidebar a {
+      font-size: 18px;
+    }
+  }
+
+
+
+
+  .my-link-style:hover {
+
+    text-decoration: underline;
+
+  }
+
+  .my-color3 {
+    background: teal;
+  }
+
+  label.logo {
+    color: snow;
+    font-size: 35px;
+    font-weight: 700;
+    font-family: serif;
+
+  }
+
+  #check {
+    display: none;
+  }
+
+  .checkbtn2 {
+    font-size: 35px;
+    color: snow;
+    padding: 2px;
+  }
+
+  .navbar-nav a {
+    font-size: 20px;
+    float: right;
+    font-family: serif;
+    color: whitesmoke;
+  }
+
+  .navbar-nav a:hover {
+    background: darkslategray;
+
+  }

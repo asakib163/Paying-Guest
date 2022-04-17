@@ -1,0 +1,145 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    
+    <!-- <script src="https://kit.fontawesome.com/c9faead742.js" crossorigin="anonymous"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
+    <style>
+        .my-link-style:hover {
+
+            text-decoration: underline;
+
+
+        }
+
+        .my-color {
+            background:#0009;
+        }
+
+        label.logo {
+            color: snow;
+            font-size: 35px;
+            font-weight: 700;
+            font-family: serif;
+
+        }
+
+        #check {
+            display: none;
+        }
+
+        .checkbtn2 {
+            font-size: 35px;
+            color: snow;
+            padding: 2px;
+        }
+
+        .navbar-nav a {
+            font-size: 20px;
+            float: right;
+            font-family: serif;
+            color: whitesmoke;
+        }
+
+        .navbar-nav a:hover {
+            background: darkslategray;
+
+        }
+       
+    </style>
+    
+</head>
+
+<header>
+    <nav class="navbar navbar-expand-sm my-color text-white p-1 justify-content-center fixed-top">
+        <div class="container-fluid">
+            
+            <a href="homepage" class="navbar-brand">
+
+                <input type="checkbox" id="check">
+                <label for="check" class="checkbtn2">
+                    <i class="fas fa-bars"></i>
+                </label>
+                {% if user.is_owner %}
+                <label class="logo"> Owner module </label>
+                {% else %}
+                
+                <label class="logo">Paying guest Accomodation </label>
+                {% endif %}
+            </a>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto ">
+                    <li class="nav-item active"><a class="nav-link " href="{% url 'homepage' %}">Home</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item active"><a class="nav-link " href="{% url 'profile' %}">Profile</a></li>
+                    {% endif %}
+                    {% if user.is_customer %}
+                    <li class="nav-item "><a class="nav-link " href="{% url 'mycart' %}">Cart</a></li>
+                    {% endif %}
+                    
+                    <li class="nav-item"><a class=" nav-link " href="#">Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a class=" nav-link " href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class=" nav-link " href="{% url 'register' %}">Register</a></li>
+                    <li class="nav-item"><a class=" nav-link " href="{% url 'login' %}">Login</a></li>                  
+                    {% endif %}
+                    
+                </ul>
+            </div>
+
+        </div>
+        {% if not user.is_owner %}
+          
+        
+        <form class="d-flex" method="POST" action="searcheditems">
+            {% csrf_token %}
+
+            <input class="form-control me-2" type="search" placeholder="City" aria-label="Search" name="search_city" id="search">
+            <input class="form-control me-2" type="search" placeholder="Division" aria-label="Search" name="search_division" id="search">
+            <button class="btn btn-secondary" type="submit">Search</button>
+          </form>
+          {% endif %}
+    </nav>
+    
+
+
+
+
+    {% block content %}
+
+
+
+    {% endblock content %}
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+ -->
+    </body>
+
+</html>

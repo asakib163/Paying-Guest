@@ -1,0 +1,70 @@
+{% extends "homepage.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content1 %}
+<style>
+  .title {
+    color: maroon;
+    font-family: serif;
+    font-size: 35px;
+    font-weight: 500;
+  }
+
+  .form {
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: mediumaquamarine;
+    font-family: serif;
+    font-size: 20px;
+    font-weight: 300;
+    padding: 50px;
+  }
+
+  .addrooms {
+    margin-top: 60px;
+  }
+
+  .btn {
+    margin-top: 10px;
+  }
+  .bgimg7{
+    background-image:url("static/images1/beautiful house/house26.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+   background-position: top 30px;
+  
+}
+.form{
+  background-color: #0009;
+  color:bisque;
+}
+ 
+</style>
+<body class="bgimg7">
+<br>
+<div class="position-relative addrooms">
+  <div class="position-absolute top-0 start-50 translate-middle-x">
+    <marquee behavior="scroll" direction="right">
+      <h3 class="title">Add Your Rooms</h3>
+    </marquee>
+  </div>
+</div>
+<br><br><br>
+<div class="form-group form">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+    <div class="form-group">
+      {{ field.label_tag }}
+      {% render_field field class="form-control" %}
+      <!-- {% for error in field.errors %}
+      <span style="color:red">This field is empty </span>
+      {% endfor %} -->
+      {% endfor %}
+      <div class="col-9">
+        <button type="submit" class="btn btn-lg btn-primary">Upload</button>
+      </div>
+  </form>
+</div>
+</body>
+{% endblock content1 %}

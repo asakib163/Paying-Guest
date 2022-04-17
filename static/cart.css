@@ -1,0 +1,42 @@
+
+
+#cart-container table{
+    border-collapse:collapse;
+    width:100%;
+    table-layout:fixed;
+}
+
+#cart-container table thead{
+    font-weight:700;
+    font-size: 20px;
+    font-family: serif;
+    
+}
+#cart-container table thead td{
+    background: chocolate;
+    color:white;
+    border:none;
+    padding:6px 0;
+    
+}
+#cart-container td{
+    border:1px solid;
+    text-align:center;
+}
+#cart-container table td:nth-child(1){
+    width:100px;
+}
+#cart-container table td:nth-child(2),
+#cart-container table td:nth-child(3){
+    width:200px;
+}
+#cart-container table td:nth-child(4),
+#cart-container table td:nth-child(5)
+{
+    width:170px;
+}
+#cart-container table tbody img{
+    width:100px;
+    height:80px;
+    object-fit:cover;
+}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<style>
+  .btn{
+    font-size: 15px;
+    border: 2px solid gray;
+    padding: 10px 70px;
+  }
+  .bgimg{
+      background-image:url("static/images1/beautiful house/house31.jpg");
+      background-repeat:no-repeat;
+      background-size: cover;
+     background-position: top 30px;
+  }
+  .card-header{
+    background-color:#0006;
+   
+  }
+  .card{
+    background-color: #0001;
+  }
+  
+
+</style>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <body class="bgimg">
+    <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 mx-auto">
+              <div class="card">
+                <div class="card-header text-white ">
+                <h2><center>Register As</center> </h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                       <div class="col-lg-6">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<a type="button" class="btn btn-block btn-lg btn-warning" href="customer_register">A Customer</a>
+                       </div>
+                       <div class="col-lg-6">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<a type="button" class="btn btn-block btn-lg btn-danger" href="owner_register">A Owner</a>
+                       </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </body>
+      {% endblock content %}

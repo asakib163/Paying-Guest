@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block content %}
+{% if not user.is_owner %}
+{% load static %}
+  
+
+<style>
+  .container {
+    margin-top: 100px;
+  }
+
+  .card {
+    margin-left: 10px;
+  }
+
+  .card-img {
+    height: 200px;
+    margin-top: 10px;
+
+  }
+  .bgimg9{
+    background-image:url("static/images1/beautiful house/house32.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+   background-position: top 30px;
+  
+}
+</style>
+
+<body class="bgimg9">
+{% if posts %}
+<div class="container">
+  {% if searched %}
+  
+  <!-- list of Posts -->
+  <div class="row" id="cl9row1">
+    <!--1st row-->
+    <div class="post_cards row">
+
+      {% for post in posts %}
+      
+
+      <div class="card" style="width: 18rem;">
+
+        <img src=" {{post.home_image.url}} " class="card-img-top card-img" alt="...">
+        <div class="card-body">
+          <h6 class="card-title"> <small> {{post.post_date}}</small></h6>
+          <h5 class="card-title">{{post.home_name}}</h5>
+          <p class="card-text">City : {{post.city}}, {{post.divisions}} </p>
+        <p class="card-text">Address: {{post.address}} </p>
+          <p class="card-text"> {{post.home_description}} </p>
+          <a href="{% url 'details' post.pk %} " class="btn btn-primary">More Details</a>
+          {% if user.is_customer %}
+          <a href=" " class="btn btn-primary">Add to Cart</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+      <br><br><br>
+      <br>
+
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+{% if posts1 %}
+<div class="container">
+  {% if searched %}
+  
+  <!-- list of Posts -->
+  <div class="row" id="cl9row1">
+    <!--1st row-->
+    <div class="post_cards row">
+     
+      {% for post in posts1 %}
+
+      <div class="card" style="width: 18rem;">
+
+        <img src=" {{post.home_image.url}} " class="card-img-top card-img" alt="...">
+        <div class="card-body">
+          <h6 class="card-title"> <small> {{post.post_date}}</small></h6>
+          <h5 class="card-title">{{post.home_name}}</h5>
+          <p class="card-text">City : {{post.city}}, {{post.divisions}} </p>
+        <p class="card-text">Address: {{post.address}} </p>
+          <p class="card-text"> {{post.home_description}} </p>
+          <a href="{% url 'details' post.pk %} " class="btn btn-primary">More Details</a>
+          {% if user.is_customer %}
+          <a href=" " class="btn btn-primary">Add to Cart</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+      <br><br><br>
+      <br>
+
+    </div>
+  </div>
+  {% endif %}
+</div>
+</body>
+{% endif %}
+
+
+{% endif %}
+{% endblock content %}

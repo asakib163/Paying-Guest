@@ -1,0 +1,52 @@
+.container-fluid{
+    margin-top: 10px;
+}
+.list-group-item:hover{
+    background-color: yellowgreen;
+}
+.col-3{
+    width:auto;
+}
+.col-9{
+    margin-left: 50px ;
+}
+#listgroupitem{
+    color: burlywood;
+}
+.list-group-item:hover{
+    background-color:green ;
+}
+
+.card{
+    background-color: rgb(25, 185, 172);
+    margin-bottom: 20px;
+}
+.card-img-top{
+    width: 16rem;
+    height: 18rem;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+.h1{
+    padding: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: 'Carter One', cursive;
+    background-color: lightgrey;
+    
+}
+
+h1{
+    font-family: 'Times New Roman', Times, serif;
+}
+.nav-item:hover, .dropdown-item:hover{
+    background-color: aqua;
+    
+}
+.dropdown:hover > .dropdown-menu{
+    display: block;
+}
+p{
+    text-align: justify;
+    
+}

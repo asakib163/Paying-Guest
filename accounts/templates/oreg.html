@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+{% load widget_tweaks %}
+{% load static %}
+
+<style>
+  .bgimg5{
+    background-image:url("static/images1/beautiful house/house29.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+   background-position: top 30px;
+  }
+  .card-header{
+    background-color:wheat ;
+  }
+  .card{
+    font-family: serif;
+    font-size: 20px;
+    background-color: #0007;
+    color:oldlace;
+  }
+</style>
+
+
+
+<br><br><br><br><br><br>
+<body class="bgimg5">
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card">
+          <div class="card-header text-black">
+            <h2>Register</h2>
+          </div>
+          <div class="card-body">
+            <form action="{% url 'owner_register' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              {% for field in form.visible_fields %}
+              <div class="form-group">
+                {{ field.label_tag }}
+                {% render_field field class="form-control" %}
+                {% for error in field.errors %}
+                <span style="color:red">{{ error }}</span>
+                {% endfor %}
+                {% endfor %}
+                <br>
+                <input type="submit" value="Register" class="btn btn-block btn-primary">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+</body>
+{% endblock content %}

@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<style>
+  .bgimg3{
+    background-image:url("static/images1/beautiful rooms/room7.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+   background-position: top 30px;
+  }
+  .btn {
+    font-size: 12px;
+
+  }
+
+  .cont1 {
+    margin-top: 100px;
+   
+  }
+
+  .img {
+    height: 150px;
+    width: 150px;
+    border-style: double;
+    border-color:brown;
+    border-width: 5px;
+  }
+
+  .card {
+    margin-left: 10px;
+    background-color:#0009;
+   
+    font-family: serif;
+    font-weight: 500;
+    border-style: double;
+    border-color: coral;
+    color:ivory;
+  }
+
+  .card-img {
+    height: 200px;
+    margin-top: 10px;
+
+  }
+  .hor{
+    color:ivory;
+    
+    
+  }
+  .booking{
+    font-size: 20px;
+    color:papayawhip;
+  }
+</style>
+
+<body class="bgimg3">
+<div class="container cont1">
+  <div class="main-body">
+    <br>
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              {% if user.is_owner %}
+              <img src=" {{user.pgowner.PgOwner_pic.url}} " alt="Profile_Pic" class="rounded-circle img" width="150">
+              {% elif user.is_customer %}
+              <img src=" {{user.customer.profile_pic.url}} " alt="Profile_Pic" class="rounded-circle img" width="150">
+              {% endif %}
+              <div class="mt-3">
+                <h4> {{user.first_name}} {{user.last_name}} </h4>
+                <p class="text-white mb-1"> {{user.username}} </p>
+                <p class="text-white font-size-sm">
+                  {% if user.is_owner %}
+                  {{user.pgowner.location}}
+                  {% elif user.is_customer %}
+                  {{user.customer.address}}
+
+                  {% endif %}
+                </p>
+                <a class="btn btn-success " href="{% url 'editname' user.pk %}">Edit Name</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-Warning">
+                {{user.email}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Mobile</h6>
+              </div>
+              <div class="col-sm-9 text-Warning">
+                {% if user.is_owner %}
+                {{user.pgowner.contact_no}}
+                {% elif user.is_customer %}
+                {{user.customer.contact_no}}
+                {% endif %}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Address</h6>
+              </div>
+              <div class="col-sm-9 text-Warning">
+                {% if user.is_owner %}
+                {{user.pgowner.location}}
+                {% elif user.is_customer %}
+                {{user.customer.address}}
+                {% endif %}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-12">
+                {% if user.is_customer %}
+                <a class="btn btn-success " href="{% url 'editprofile1' user.pk %}">Edit Details</a>
+                {% elif user.is_owner %}
+                <a class="btn btn-success " href="{% url 'editprofile' user.pk %}">Edit Details</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% if user.is_customer %}
+        <hr class="hor">
+       <p class="booking"> <marquee behavior="" " direction="">My Bookings</marquee>
+        <hr></p>
+        <div class="container">
+          <div class="post_cards row">
+            {% for post in posts %}
+            {% if user == post.author %}
+            <div class="card" style="width: 18rem;">
+              <img src=" {{post.home_image.url}} " class="card-img-top card-img" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{post.home_name}}</h5>
+                <p class="card-text"> {{post.home_description}} </p>
+                <a href="{% url 'details' post.pk %} " class="btn btn-primary me-2">More Details</a>
+                <a href="{% url 'update_post' post.pk %}" class="btn btn-primary">Update Details</a>
+                <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger mt-2">Delete</a>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% for msg in messages %}
+              <p style="color: green;"> {{msg}} </p>
+            {% endfor %}
+            {% for booking in bookings %}
+            {% if user == booking.user %}
+
+            <div class="card" style="width: 18rem;">
+              <img src=" {{booking.room.home_image.url}} " class="card-img-top card-img" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{booking.room.home_name}}</h5>
+                <div class="card-text">
+                  <label for=""> Duration : </label>
+                  <p> {{booking.check_in}} - {{booking.check_out}} </p>
+                </div>
+                <div class="row">
+                  <a href="{% url 'details' booking.room.pk %} " class="btn btn-primary me-2 col-6 ">More Details</a>
+                  
+                  <form action=" {% url 'cancelbooking' %} " method="POST" class="col-4">
+                    {% csrf_token %}
+                    <input hidden type="hidden" name="home_id"  value=" {{booking.id}} ">
+                    <input hidden type="hidden" name="user_id"  value=" {{user.id}} ">
+                    <input hidden type="hidden" name="check_in" value="{{booking.check_in}}">
+                    <input hidden type="hidden" name="check_out" value="{{booking.check_out}}">
+                    <input type="submit" class="btn btn-primary" value="Cancel Booking">
+                  </form>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="container">
+          <div class="post_cards row">
+            {% for post in posts %}
+            {% if user == post.author %}
+            <div class="card" style="width: 18rem;">
+              <img src=" {{post.home_image.url}} " class="card-img-top card-img" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{post.home_name}}</h5>
+                <p class="card-text"> {{post.home_description}} </p>
+                <a href="{% url 'details' post.pk %} " class="btn btn-primary me-2">More Details</a>
+                <a href="{% url 'update_post' post.pk %}" class="btn btn-primary">Update Details</a>
+                <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger mt-2">Delete</a>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+
+{% endblock content %}

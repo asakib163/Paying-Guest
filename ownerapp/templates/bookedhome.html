@@ -1,0 +1,99 @@
+{% extends "homepage.html" %}
+{% block content1 %}
+{% load static %}
+<style>
+    .btn {
+        font-size: 12px;
+
+    }
+
+    .cont1 {
+        margin-top: 100px;
+        margin-left: 20px;
+    }
+
+    .img {
+        height: 150px;
+        width: 150px;
+
+    }
+
+    .card {
+        margin-left: 10px;
+    }
+
+    .card-img {
+        height: 200px;
+        margin-top: 10px;
+
+    }
+
+    .bgimg11 {
+        background-image: url("static/images1/beautiful house/house26.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top 30px;
+
+    }
+</style>
+
+<body class="bgimg11">
+    <div class="cont1">
+        <div class="row">
+            {% for booking in bookings %}
+            {% if user == booking.room.author %}
+            <div class="card" style="width: 18rem;">
+                <img src=" {{booking.room.home_image.url}} " class="card-img-top card-img" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{booking.room.home_name}}</h5>
+                    <div class="card-text">
+                        <label for=""> Duration : </label>
+                        <p> {{booking.check_in}} - {{booking.check_out}} </p>
+                    </div>
+                    <div class="row">
+                        {% if user.is_owner %}
+                        <form action="{% url 'showprofile' %}" method="post" class="col" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="card-title abc">
+                                <input type="hidden" value="{{ booking.user}}" name="username">
+                                <input type="hidden" value="{{ booking.user.first_name}}" name="first_name">
+                                <input type="hidden" value="{{ booking.user.last_name}}" name="last_name">
+                                <input type="hidden" value="{{ booking.user.email}}" name="email">
+                                <input type="hidden" value="{{ booking.user.customer.contact_no}}" name="contact_no">
+                                <input type="hidden" value="{{ booking.user.customer.address}}" name="address">
+                                <input type="hidden" value="{{ booking.user.customer.profile_pic.url}}" name="pro_pic">
+                                <input type="submit" class="btn btn-primary me-2 col-6 " name="system"
+                                    value="{{ booking.user.first_name}}">
+                            </div>
+                        </form>
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <form action=" {% url 'confirmbooking' %} " method="POST" class="col-4">
+                            {% csrf_token %}
+                            <input hidden type="hidden" name="home_id" value=" {{booking.id}} ">
+                            <input hidden type="hidden" name="user_id" value=" {{user.id}} ">
+                            <input hidden type="hidden" name="check_in" value="{{booking.check_in}}">
+                            <input hidden type="hidden" name="check_out" value="{{booking.check_out}}">
+                            <input type="submit" class="btn btn-primary" value="Confirm Booking">
+                        </form>
+&emsp;
+&emsp;
+&nbsp;
+                        <form action=" {% url 'cancelbooking' %} " method="POST" class="col-4">
+                            {% csrf_token %}
+                            <input hidden type="hidden" name="home_id" value=" {{booking.id}} ">
+                            <input hidden type="hidden" name="user_id" value=" {{user.id}} ">
+                            <input hidden type="hidden" name="check_in" value="{{booking.check_in}}">
+                            <input hidden type="hidden" name="check_out" value="{{booking.check_out}}">
+                            <input type="submit" class="btn btn-primary" value="Cancel Booking">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+{% endblock content1 %}

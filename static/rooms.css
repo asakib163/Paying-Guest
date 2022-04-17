@@ -1,0 +1,100 @@
+.bg1{
+background:beige ;
+}
+
+
+.form1{
+    color:black;
+  
+}
+.element{
+    background:transparent;
+    font-size:18px;
+    font-family: serif;
+    
+}
+
+.horizontal{
+  color: brown;
+
+}
+
+.addpg{
+  
+  font-size: 35px;
+  font-family: serif;
+  font-weight: 800;
+  padding: 30px;
+  text-align:center;
+  text-indent: 10px;
+  
+  
+}
+h2{
+  color:maroon;
+  font-family: serif;
+  font-size: 30px;
+  font-weight: 900;
+  align-items: center;
+  padding-bottom: 20px;
+}
+h3{
+  color:coral;
+  font-size: 20px;
+  font-family: serif;
+}
+.equipment{
+  color:black;
+  font-family: serif;
+  font-weight: 200;
+  font-size: 23px;
+}
+.btn4{
+  position: relative;
+  font-size: 25px;
+  width:60px;
+  color:black;
+  font-weight: 800;
+  background-color: floralwhite;
+  
+}
+.btn4:hover{
+
+  background-color:mediumspringgreen;
+}
+.btn5{
+    background-color:floralwhite;
+    font-size: 25px;
+    font-family: serif;
+    font-weight: 800;
+    width: 60px;
+}
+.btn5:hover{
+
+    background-color:orangered;
+  }
+  .btn6{
+    background-color:brown;
+    font-size: 25px;
+    font-family: serif;
+    font-weight: 800;
+    width: 60px;
+}
+.btn6:hover{
+
+  background-color:darkgreen;
+}
+
+.facilities{
+  
+  text-align: center;
+  background-color: beige;
+  
+}
+.submit{
+  text-align: center;
+}
+.cancel{
+  text-align: center;
+}
+

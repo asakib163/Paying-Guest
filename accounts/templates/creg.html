@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<style>
+  .bgimg6{
+    background-image:url("static/images1/beautiful house/house29.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+   background-position: top 30px;
+  }
+  .card-header{
+    background-color:wheat ;
+  }
+  .card{
+    font-family: serif;
+    font-size: 20px;
+    background-color: #0008;
+    color:oldlace;
+  }
+  
+</style>
+<br><br><br><br><br><br>
+<body class="bgimg6">
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 m-3 mx-auto">
+        <div class="card">
+          <div class="card-header text-black">
+            <h2><center>Register</center></h2>
+          </div>
+          <div class="card-body">
+            <form action="{% url 'customer_register' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              {% for field in form.visible_fields %}
+              <div class="form-group">
+                {{ field.label_tag }}
+                {% render_field field class="form-control" %}
+                {% for error in field.errors %}
+                <span style="color:red">{{ error }}</span>
+                {% endfor %}
+                {% endfor %}
+                <br>
+                <input type="submit" value="Register" class="btn btn-block btn-primary">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+</body>
+{% endblock content %}

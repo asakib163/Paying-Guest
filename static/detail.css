@@ -1,0 +1,124 @@
+
+.flex-box{
+    display:flex;
+    width: 1000px;
+    margin: 30px auto;
+}
+.left{
+    width: 50%;
+}
+.big-img{
+    width:500px;
+}
+.big-img img{
+    width:inherit;
+}
+.images{
+    display:inline-flex;
+    justify-content: space-between;
+    width: 30%;
+    margin-top:30px;
+   
+}
+.small-img{
+    width:100px;
+    
+}
+.small-img img{
+    width:inherit;
+    cursor:pointer;
+    transition: all 0.3s ease;
+}
+.small-img:hover img{
+    transform:scale(1.2);
+}
+.right{
+    
+    padding: 50px;
+    align-items: right;
+}
+.url{
+    font-size: 50px;
+    font-family: serif;
+    font-weight: 500;
+    color:brown;
+
+}
+.price{
+    font-size: 40px;
+    font-family: serif;
+    font-weight: 400;
+    color:brown;
+    margin-right: 50px 0;
+
+}
+.address{
+    font-size: 25px;
+    font-family: serif;
+    font-weight: 600;
+    color:brown;
+}
+.btn-box{
+    display: flex;
+    margin: 20px 0;
+}
+
+.btn-box button{
+    font-size: 18px;
+    padding: 8px 25px;
+    border:none;
+    outline:none;
+    border-radius: 15px;
+    cursor: pointer;
+
+}
+.cart-btn{
+    font-size: 20px;
+    font-weight: 800;
+    background-color:red;
+    color: whitesmoke;
+    font-family: serif;
+}
+.buy-btn{
+    font-size: 20px;
+    font-weight: 800;
+    background-color:green;
+    color: whitesmoke;
+    font-family: serif;
+}
+.detail-btn{
+    font-size: 20px;
+    font-weight: 800;
+    background-color:chocolate;
+    color: whitesmoke;
+    font-family: serif;
+}
+.delete-btn{
+    font-size: 20px;
+    font-weight: 800;
+    background-color:red;
+    color: whitesmoke;
+    font-family: serif;
+}
+
+.cart-btn:hover{
+    background-color: royalblue;
+}
+.buy-btn:hover{
+    background-color:crimson;
+
+}
+.detail-btn:hover{
+    background-color:maroon;
+
+}
+h2{
+    font-size:300px;
+    margin-bottom: 100px;
+    color:maroon;
+    font-family: serif;
+    font-weight:800;
+    padding:5px;
+    
+}
+

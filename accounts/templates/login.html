@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+{% load widget_tweaks %}
+{% load static %}
+
+<style>
+  .bgimg1{
+    background-image:url("static/images1/beautiful house/house33.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+   background-position: top 30px;
+  }
+  .card-header{
+    background-color:#0006;
+  }
+  .card{
+    background-color:#0006;
+    font-family: serif;
+    font-size: 20px;
+    color:oldlace;
+    font-family: serif;
+   font-weight: 500;
+   
+  }
+  .container{
+    width:2000px;
+    height:400px;
+  }
+</style>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<body class="bgimg1">
+
+
+    <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 mx-auto">
+              <div class="card">
+                <div class="card-header text-White">
+                  <h2><center>Login</center></h2>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'login' %}" method="POST">
+                      {% csrf_token %}
+                         {% for field in form.visible_fields %}
+                           <div class="form-group">
+                               {{ field.label_tag }}
+                                  {% render_field field class="form-control" %}
+                                    {% if messages%}
+                                      {% for message in messages %}
+                                        <span style="color:red">{{ message }}</span>
+                                      {% endfor %}
+                                     {% endif %}
+                         {% endfor %}
+                         <br>
+                             <input type="submit" value="Login" class="btn btn-block btn-success">
+                             <a class="btn btn-block btn-danger" href="{% url 'forget_password' %}"> Forget Password </a>
+                           </div>
+                    </form>
+                 </div>
+                    </div>   
+                </div>
+              </div>
+            </div>
+        </div>
+      </section>
+      </body>
+      {% endblock content %}
